@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+<style>
+    body{
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;        
+          color: #2c3e50;
+    }
+        input {
+          font-family: 'Avenir', Helvetica, Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;        
+          color: #2c3e50;
+          border: 1px solid #ced4da;
+          border-radius: .25rem;
+          width: 80%;
+          height: 30px
+        }
+        button{
+            background: red;
+            color: white;
+            margin-right: 80px;
+            padding: 10px;
+        
+        }
+        table{
+          width: 800px;
+          text-align: left;
+          padding-left: 150px;
+        }
+        th{
+          width: 40%
+        }
+        label{
+            font-weight: bold;
+            position: fixed;
+            left: 50px;
+            padding-top: 2px;
+        }
+        #background{
+          position: fixed;
+          bottom: 0%;
+          right:0%
+        }
+        </style>
+        
+<body>
+    <div class="parkingplatz">
+        <div id="logo" style="margin-left:900px">
+            <img src="./assets/logo.png" alt="" style="width:300px">
+        </div>
+
+        <div id="parkmap">
+            <table>
+                <tr> 
+                    <td>
+                         <h3>Parking Spot Reservation: 43/48</h3>
+                         <h3>Const Per Hour: 3.5€</h3>
+                         <img id="park" src="./assets/park.png" alt="" style="width:600px; height: 300px" onclick="handleSubmit1()">                
+                    </td>
+                </tr>
+             
+            </table>
+        </div>
+        <div>
+            <table id="parktime" style="display:none">
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+                <tr>
+                    <td><input type="date" style="width: 150px; margin-right: 10px"><input type="time" style="width: 100px;margin-right: 10px"></td>
+                    <td><input type="date" style="width: 150px;margin-right: 10px"><input type="time" style="width: 100px;margin-right: 10px"
+                            onchange="handleSubmit2()"></td>
+                </tr>
+            </table><br>
+            <table id="number" style="display:none">
+                <tr>
+                    <th>Number Plate</th>
+                </tr>
+                <tr>
+                    <td><input type="text" onkeypress="handleSubmit3(event)"></td>
+                </tr>
+            </table><br>
+            <table id="cost" style="display:none">
+                <tr>
+                    <th>Estimated Cost</th>
+                    <th>19€</th>
+                </tr>
+                <tr><td><br>
+                        <button id="confirm" style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);border: none;display: none">Confirm</button>
+              
+
+                </td>
+                      </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+
+    function handleSubmit1() {
+        document.getElementById("park").src = './assets/park2.png';
+        document.getElementById("parktime").style.display = 'block';
+    }
+    function handleSubmit2() {
+        document.getElementById("number").style.display = 'block';
+    }
+    function handleSubmit3(event){
+        if (event.keyCode == 13) {
+            document.getElementById("cost").style.display = 'block';
+            document.getElementById("confirm").style.display = 'block';
+        }
+    }
+</script>
+
+</html>
