@@ -93,7 +93,7 @@
                     <th>19€</th>
                 </tr>
                 <tr><td><br>
-                        <button id="confirm" style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);border: none;display: none">Confirm</button>
+                        <button id="confirm" style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);border: none;display: none" onclick="sh()">Confirm</button>
               
 
                 </td>
@@ -116,6 +116,11 @@
             document.getElementById("cost").style.display = 'block';
             document.getElementById("confirm").style.display = 'block';
         }
+    }
+    function sh(){
+
+window.alert('Successfully booked!! ');
+
     }
 </script>
 

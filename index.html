@@ -62,7 +62,7 @@
           <th>To</th>
         </tr>
         <tr>
-          <td><input type="text"></td>
+          <td><input id ="show" type="text"><img src="./assets/1.png" alt="" style="width:20px; padding-left: 10px; padding-top:5px " onclick="show()"></td>
           <td><input type="text"></td>
         </tr>
       </table><br><br>
@@ -103,6 +103,13 @@
       </table><br>
       <div style="position: fixed"><img src="./assets/back.png" alt=""></div>
     </div>
+<script>
+function show(){
+
+document.getElementById("show").setAttribute('placeholder','Current Position');
+
+}
+</script>
 </body>
 
 </html>
