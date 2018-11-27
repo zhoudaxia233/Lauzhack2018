@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style="height: 100%">
+
 <head>
     <meta charset="utf-8">
 </head>
@@ -26,1784 +27,797 @@ button{
 
 
 <body style="height: 100%; margin: 0">
-<div id="container" style="height: 100%"></div>
-<div id="sidebar" style="position: fixed;right: 0px;top: 0px;height: 100%;width: 400px; background: grey;"> 
+    <div id="container" style="height: 100%"></div>
+    <div id="sidebar" style="position: fixed;right: 0px;top: 0px;height: 100%;width: 400px; background: grey;">
 
-    <div id = "line1" style="border: 4px solid #f6bb06;">
-    <img src="./assets/line1.png" alt="" style="width: 380px;">
-    <button ><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
-</div>
+        <div id="line1" style="border: 4px solid #f6bb06;">
+            <img src="./assets/line1.png" alt="" style="width: 380px;">
+            <button><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
+        </div>
 
-    <div id = "line2" style="border: 4px solid #ec0000;">
-     <img src="./assets/line2.png" alt="" style="width: 380px;">
-     <button><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
+        <div id="line2" style="border: 4px solid #ec0000;">
+            <img src="./assets/line2.png" alt="" style="width: 380px;">
+            <button><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
+
+        </div>
+
+        <div id="line3" style="border: 4px solid #FF7F5C;">
+            <img src="./assets/line3.png" alt="" style="width: 380px;">
+            <button><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
+
+        </div>
 
     </div>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        myChart.showLoading();
 
-    <div id = "line3" style="border: 4px solid #FF7F5C;">
-     <img src="./assets/line3.png" alt="" style="width: 380px;">
-     <button ><a href="platz.html" style="color:white; text-decoration:none">NEXT</a></button>
-
-    </div>
-
-</div>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
-<script src="./jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-     var dom = document.getElementById("container");
-    var myChart = echarts.init(dom);
-    var app = {};
-    option = null;
-    myChart.showLoading();
-
-    var geodata = [  {
-        name: 'Current',
-        value: [ 8.705409,47.376939]
-    },{
-        name: 'Zürich Seebach',
-        value: [ 8.54463614173,47.4187469105]
-    },
-        {
-            name: 'Goppenstein',
-            value: [7.75492126836, 46.3677071481]
-        },
-        {
-            name: 'Zürich HB',
-            value: [  8.54019221036,47.3781765756]
-        },
-        {
-            name: 'Zürich Tiefenbrunnen',
-            value: [8.56137239898,47.3501235091]
-        },
-
-    ]
-
-    var red = [
-        {name: 'Current',  value: [ 8.705409,47.376939]},
-        {
-            name: 'Goppenstein',
-            value: [7.75492126836, 46.3677071481]
-        },
-        {
-            name: 'Zürich HB',
-            value: [  8.54019221036,47.3781765756]
-        },
-
-    ];
-    var Tiefenbrunnen = [
-        {
-            name: 'Zürich Tiefenbrunnen',
-            value: [8.56137239898,47.3501235091]
-        },
-    ];
-
-
-    var Seebach = [
-        {
+        var geodata = [
+            {
+            name: 'Current',
+            value: [8.705409, 47.376939]
+        }, {
             name: 'Zürich Seebach',
-            value: [ 8.54463614173,47.4187469105]
+            value: [8.54463614173, 47.4187469105]
         },
-    ];
+        {
+            name: 'Goppenstein',
+            value: [7.75492126836, 46.3677071481]
+        },
+        {
+            name: 'Zürich HB',
+            value: [8.54019221036, 47.3781765756]
+        },
+        {
+            name: 'Zürich Tiefenbrunnen',
+            value: [8.56137239898, 47.3501235091]
+        },
+
+        ]
+
+        var ZurichHB = [
+            { name: 'Current', value: [8.705409, 47.376939] },
+            {
+                name: 'Goppenstein',
+                value: [7.75492126836, 46.3677071481]
+            },
+            {
+                name: 'Zürich HB',
+                value: [8.54019221036, 47.3781765756]
+            },
+
+        ];
+        var Tiefenbrunnen = [
+            {
+                name: 'Zürich Tiefenbrunnen',
+                value: [8.56137239898, 47.3501235091]
+            },
+        ];
+        var Seebach = [
+            {
+                name: 'Zürich Seebach',
+                value: [8.54463614173, 47.4187469105]
+            },
+        ];
 
 
-    var convertData = function (data) {
-        var res = [];
-        for (var i = 0; i < data.length; i++) {
-            var fromCoord = geodata[i].value;//获取城市的坐标 source
-            var toCoord = data[i].value;//获取城市的坐标 destination
-            if (fromCoord && toCoord) {
-                res.push({
-                    fromName: data[i].name,
-                    toName: data[i].value,
-                    coords: [fromCoord, toCoord]
-                });
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var fromCoord = geodata[i].value;//获取城市的坐标 source
+                var toCoord = data[i].value;//获取城市的坐标 destination
+                if (fromCoord && toCoord) {
+                    res.push({
+                        fromName: data[i].name,
+                        toName: data[i].value,
+                        coords: [fromCoord, toCoord]
+                    });
+                }
+                //
             }
-//
-        }
-        return res;
-    };
-
-document.getElementById("line1").addEventListener("click", function(){
-    console.log(myChart)
-    myChart.setOption({
-            backgroundColor: '#404a59',
-            title: {
-                // text: 'USA Population Estimates (2012)',
-                // subtext: 'Data from www.census.gov',
-                // sublink: 'http://www.census.gov/popest/data/datasets.html',
-                // left: 'right'
-            },
-            // tooltip: {
-            //     trigger: 'item',
-            //     showDelay: 0,
-            //     transitionDuration: 0.2,
-            //     formatter: function (params) {
-            //         var value = (params.value + '').split('.');
-            //         value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-            //         return params.seriesName + '<br/>' + params.name + ': ' + value;
-            //     }
-            // },
-            toolbox: {
-                show: true,
-                //orient: 'vertical',
-                left: 'left',
-                top: 'top',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-
-            geo: {
-                name: 'USA PopEstimates',
-                type: 'map',
-                roam: true,
-                map: 'USA',
-//                markPoint: {
-//                    // 设置 symbol 为图片，url是图片链接
-//                    symbol: 'image/11.jpg',
-//                    symbolSize:10,
-//
-//                    data: [ {
-//                        name: 'aaa',
-//                        value: [7.8492126836, 46.3677071481]
-//                    }, ]
-//                },
-                silent: true,
-                itemStyle:{
-                    normal: {
-                        areaColor: '#FFFFFF',
-                        borderColor: '#ec0000',
-                        borderWidth: 1   },
-                }
-                // 文本位置修正
-                // textFixed: {
-                //     Alaska: [20, -20]
-                // }
-
-            },
-            legend: {
-                x: '50%',
-                top: '90%',
-                zlevel: 1,
-                selectedMode: 'single',
-                selected: {
-                    'choice1':true,
-                    'choice2 ':false,
-                    'choice3':false
-
-                },
-                textStyle: {
-                    color: '#FF7F5C'
-                },
-                data: ['choice1', 'choice2', 'choice3']
-            },
-            series: [
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {  fromName: geodata[0].name,
-                            toName:  geodata[1].name,
-                            coords: [geodata[0].value, geodata[1].value]}
-
-                        ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice1',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data: {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[1].name,
-//                        coords: [geodata[0].value, geodata[1].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#f6bb06',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#f6bb06 ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[1].value, geodata[2].value]
-                        },
-//
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice2',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data:  {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[3].name,
-//                        coords: [geodata[0].value, geodata[3].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#FF7F5C',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#FF7F5C ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                        toName:  geodata[3].name,
-                        coords: [geodata[0].value, geodata[3].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#FF7F5C',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-
-                        {
-                            fromName: geodata[3].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[3].value, geodata[2].value]
-                        },
-//
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#FF7F5C',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.2
-                        }
-                    }
-                },
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[4].name,
-                            coords: [geodata[0].value, geodata[4].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    symbol: ['none', 'triangle'],
-                    zlevel: 2,
-//
-                    data: [
-
-
-                        {
-                            fromName: geodata[4].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[4].value, geodata[2].value]
-                        },
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.4
-                        }
-                    }
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'left',
-                            offset: [-20, 10],
-                            show: true,
-                            textStyle: {
-                                color: "#ec0000"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ec0000'
-                        }
-                    },
-
-                    data: red
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'top',
-                            offset: [-15, -15],
-                            show: true,
-                            textStyle: {
-                                color: "#f6bb06"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#f6bb06'
-                        }
-                    },
-
-                    data:Seebach
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'right',
-                            offset: [15, 15],
-                            show: true,
-                            textStyle: {
-                                color: "#FF7F5C"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#FF7F5C'
-                        }
-                    },
-                    data: Tiefenbrunnen
-                }
-            ]
-        
-
-     })
-});
-
-
-
-document.getElementById("line2").addEventListener("click", function(){
-    console.log(myChart)
-    myChart.setOption({
-            backgroundColor: '#404a59',
-            title: {
-                // text: 'USA Population Estimates (2012)',
-                // subtext: 'Data from www.census.gov',
-                // sublink: 'http://www.census.gov/popest/data/datasets.html',
-                // left: 'right'
-            },
-            // tooltip: {
-            //     trigger: 'item',
-            //     showDelay: 0,
-            //     transitionDuration: 0.2,
-            //     formatter: function (params) {
-            //         var value = (params.value + '').split('.');
-            //         value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-            //         return params.seriesName + '<br/>' + params.name + ': ' + value;
-            //     }
-            // },
-            toolbox: {
-                show: true,
-                //orient: 'vertical',
-                left: 'left',
-                top: 'top',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-
-            geo: {
-                name: 'USA PopEstimates',
-                type: 'map',
-                roam: true,
-                map: 'USA',
-//                markPoint: {
-//                    // 设置 symbol 为图片，url是图片链接
-//                    symbol: 'image/11.jpg',
-//                    symbolSize:10,
-//
-//                    data: [ {
-//                        name: 'aaa',
-//                        value: [7.8492126836, 46.3677071481]
-//                    }, ]
-//                },
-                silent: true,
-                itemStyle:{
-                    normal: {
-                        areaColor: '#FFFFFF',
-                        borderColor: '#ec0000',
-                        borderWidth: 1   },
-                }
-                // 文本位置修正
-                // textFixed: {
-                //     Alaska: [20, -20]
-                // }
-
-            },
-            legend: {
-                x: '50%',
-                top: '90%',
-                zlevel: 1,
-                selectedMode: 'single',
-                selected: {
-                    'choice1':false,
-                    'choice2 ':true,
-                    'choice3':false
-
-                },
-                textStyle: {
-                    color: '#FF7F5C'
-                },
-                data: ['choice1', 'choice2', 'choice3']
-            },
-            series: [
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {  fromName: geodata[0].name,
-                            toName:  geodata[1].name,
-                            coords: [geodata[0].value, geodata[1].value]}
-
-                        ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice1',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data: {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[1].name,
-//                        coords: [geodata[0].value, geodata[1].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#f6bb06',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#f6bb06 ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[1].value, geodata[2].value]
-                        },
-//
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice2',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data:  {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[3].name,
-//                        coords: [geodata[0].value, geodata[3].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#FF7F5C',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#FF7F5C ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                        toName:  geodata[3].name,
-                        coords: [geodata[0].value, geodata[3].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#ec0000',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-
-                        {
-                            fromName: geodata[3].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[3].value, geodata[2].value]
-                        },
-//
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#ec0000',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.2
-                        }
-                    }
-                },
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[4].name,
-                            coords: [geodata[0].value, geodata[4].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    symbol: ['none', 'triangle'],
-                    zlevel: 2,
-//
-                    data: [
-
-
-                        {
-                            fromName: geodata[4].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[4].value, geodata[2].value]
-                        },
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.4
-                        }
-                    }
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'left',
-                            offset: [-20, 10],
-                            show: true,
-                            textStyle: {
-                                color: "#ec0000"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ec0000'
-                        }
-                    },
-
-                    data: red
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'top',
-                            offset: [-15, -15],
-                            show: true,
-                            textStyle: {
-                                color: "#f6bb06"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#f6bb06'
-                        }
-                    },
-
-                    data:Seebach
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'right',
-                            offset: [15, 15],
-                            show: true,
-                            textStyle: {
-                                color: "#FF7F5C"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#FF7F5C'
-                        }
-                    },
-                    data: Tiefenbrunnen
-                }
-            ]
-        
-
-     })
-});
-
-
-
-document.getElementById("line3").addEventListener("click", function(){
-    console.log(myChart)
-    myChart.setOption({
-            backgroundColor: '#404a59',
-            title: {
-                // text: 'USA Population Estimates (2012)',
-                // subtext: 'Data from www.census.gov',
-                // sublink: 'http://www.census.gov/popest/data/datasets.html',
-                // left: 'right'
-            },
-            // tooltip: {
-            //     trigger: 'item',
-            //     showDelay: 0,
-            //     transitionDuration: 0.2,
-            //     formatter: function (params) {
-            //         var value = (params.value + '').split('.');
-            //         value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-            //         return params.seriesName + '<br/>' + params.name + ': ' + value;
-            //     }
-            // },
-            toolbox: {
-                show: true,
-                //orient: 'vertical',
-                left: 'left',
-                top: 'top',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-
-            geo: {
-                name: 'USA PopEstimates',
-                type: 'map',
-                roam: true,
-                map: 'USA',
-//                markPoint: {
-//                    // 设置 symbol 为图片，url是图片链接
-//                    symbol: 'image/11.jpg',
-//                    symbolSize:10,
-//
-//                    data: [ {
-//                        name: 'aaa',
-//                        value: [7.8492126836, 46.3677071481]
-//                    }, ]
-//                },
-                silent: true,
-                itemStyle:{
-                    normal: {
-                        areaColor: '#FFFFFF',
-                        borderColor: '#ec0000',
-                        borderWidth: 1   },
-                }
-                // 文本位置修正
-                // textFixed: {
-                //     Alaska: [20, -20]
-                // }
-
-            },
-            legend: {
-                x: '50%',
-                top: '90%',
-                zlevel: 1,
-                selectedMode: 'single',
-                selected: {
-                    'choice1':false,
-                    'choice2 ':false,
-                    'choice3':true
-
-                },
-                textStyle: {
-                    color: '#FF7F5C'
-                },
-                data: ['choice1', 'choice2', 'choice3']
-            },
-            series: [
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {  fromName: geodata[0].name,
-                            toName:  geodata[1].name,
-                            coords: [geodata[0].value, geodata[1].value]}
-
-                        ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice1',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data: {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[1].name,
-//                        coords: [geodata[0].value, geodata[1].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#f6bb06',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#f6bb06 ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[1].value, geodata[2].value]
-                        },
-//
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice2',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data:  {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[3].name,
-//                        coords: [geodata[0].value, geodata[3].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#FF7F5C',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#FF7F5C ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                        toName:  geodata[3].name,
-                        coords: [geodata[0].value, geodata[3].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#FF7F5C',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-
-                        {
-                            fromName: geodata[3].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[3].value, geodata[2].value]
-                        },
-//
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#FF7F5C',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.2
-                        }
-                    }
-                },
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[4].name,
-                            coords: [geodata[0].value, geodata[4].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    symbol: ['none', 'triangle'],
-                    zlevel: 2,
-//
-                    data: [
-
-
-                        {
-                            fromName: geodata[4].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[4].value, geodata[2].value]
-                        },
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.4
-                        }
-                    }
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'left',
-                            offset: [-20, 10],
-                            show: true,
-                            textStyle: {
-                                color: "#ec0000"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ec0000'
-                        }
-                    },
-
-                    data: red
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'top',
-                            offset: [-15, -15],
-                            show: true,
-                            textStyle: {
-                                color: "#f6bb06"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#f6bb06'
-                        }
-                    },
-
-                    data:Seebach
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'right',
-                            offset: [15, 15],
-                            show: true,
-                            textStyle: {
-                                color: "#FF7F5C"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#FF7F5C'
-                        }
-                    },
-                    data: Tiefenbrunnen
-                }
-            ]
-        
-
-     })
-});
-
-
-            $.get('./Swiss.geo.json', function (usaJson) {
-        myChart.hideLoading();
-
-        echarts.registerMap('USA', usaJson);
-        option = {
-            backgroundColor: '#404a59',
-            title: {
-                // text: 'USA Population Estimates (2012)',
-                // subtext: 'Data from www.census.gov',
-                // sublink: 'http://www.census.gov/popest/data/datasets.html',
-                // left: 'right'
-            },
-            // tooltip: {
-            //     trigger: 'item',
-            //     showDelay: 0,
-            //     transitionDuration: 0.2,
-            //     formatter: function (params) {
-            //         var value = (params.value + '').split('.');
-            //         value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-            //         return params.seriesName + '<br/>' + params.name + ': ' + value;
-            //     }
-            // },
-            toolbox: {
-                show: true,
-                //orient: 'vertical',
-                left: 'left',
-                top: 'top',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-
-            geo: {
-                name: 'USA PopEstimates',
-                type: 'map',
-                roam: true,
-                map: 'USA',
-//                markPoint: {
-//                    // 设置 symbol 为图片，url是图片链接
-//                    symbol: 'image/11.jpg',
-//                    symbolSize:10,
-//
-//                    data: [ {
-//                        name: 'aaa',
-//                        value: [7.8492126836, 46.3677071481]
-//                    }, ]
-//                },
-                silent: true,
-                itemStyle:{
-                    normal: {
-                        areaColor: '#FFFFFF',
-                        borderColor: '#ec0000',
-                        borderWidth: 1   },
-                }
-                // 文本位置修正
-                // textFixed: {
-                //     Alaska: [20, -20]
-                // }
-
-            },
-            legend: {
-                x: '50%',
-                top: '90%',
-                zlevel: 1,
-                selectedMode: 'multiple',
-                selected: {
-                    'choice1':true,
-                    'choice2 ':true,
-                    'choice3':true
-
-                },
-                textStyle: {
-                    color: '#FF7F5C'
-                },
-                data: ['choice1', 'choice2', 'choice3']
-            },
-            series: [
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {  fromName: geodata[0].name,
-                            toName:  geodata[1].name,
-                            coords: [geodata[0].value, geodata[1].value]}
-
-                        ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice1',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data: {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[1].name,
-//                        coords: [geodata[0].value, geodata[1].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#f6bb06',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#f6bb06 ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-
-                {
-                    name: 'choice1',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[1].value, geodata[2].value]
-                        },
-//
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f6bb06',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness: -0.2
-                        }
-                    }
-                },
-//                {
-//                    name:'choice2',
-//                    type:'lines',
-//                    coordinateSystem: 'geo',
-//                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
-//                    data:  {
-//                        fromName: geodata[0].name,
-//                        toName:  geodata[3].name,
-//                        coords: [geodata[0].value, geodata[3].value]
-//                    },
-//                    effect: {
-//                        show: true,
-//                        period: 6,
-//                        trailLength: 0,
-//                    },
-//                    lineStyle: {
-//                        emphasis:{
-//                            color: '#FF7F5C',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        },
-//                        normal: {
-//                            color: '#FF7F5C ',
-//                            width: 4,
-//                            opacity: 0.4,
-//                            type:'dotted',
-//                            curveness: 0.2
-//                        }
-//                    }
-//                },
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                        toName:  geodata[3].name,
-                        coords: [geodata[0].value, geodata[3].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#ec0000',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice2',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    data: [
-
-                        {
-                            fromName: geodata[3].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[3].value, geodata[2].value]
-                        },
-//
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#ec0000',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.2
-                        }
-                    }
-                },
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    smooth:false,
-                    coordinateSystem: 'geo',
-                    data: [
-                        {
-                            fromName: geodata[0].name,
-                            toName:  geodata[4].name,
-                            coords: [geodata[0].value, geodata[4].value]
-                        }
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            type:'dotted',
-                            curveness: -0.2
-                        }
-                    }
-                },
-
-                {
-                    name: 'choice3',
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    symbol: ['none', 'triangle'],
-                    zlevel: 2,
-//
-                    data: [
-
-
-                        {
-                            fromName: geodata[4].name,
-                            toName:  geodata[2].name,
-                            coords: [geodata[4].value, geodata[2].value]
-                        },
-
-                    ],
-
-                    effect: {
-                        show: true,
-                        period: 6,
-                        trailLength: 0,
-                    },
-                    lineStyle: {
-                        normal: {
-                            color: '#f76902',
-                            width: 4,
-                            opacity: 0.8,
-                            curveness:0.4
-                        }
-                    }
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'left',
-                            offset: [-20, 10],
-                            show: true,
-                            textStyle: {
-                                color: "#ec0000"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ec0000'
-                        }
-                    },
-
-                    data: red
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'top',
-                            offset: [-15, -15],
-                            show: true,
-                            textStyle: {
-                                color: "#f6bb06"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#f6bb06'
-                        }
-                    },
-
-                    data:Seebach
-                },
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    showEffectOn: 'render',
-                    zlevel: 3,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    rippleEffect: {
-                        brushType: 'stroke',
-                        period: 5,
-                        scale: 7
-                    },
-                    label: {
-                        normal: {
-                            formatter: '{b}',
-                            position: 'right',
-                            offset: [15, 15],
-                            show: true,
-                            textStyle: {
-                                color: "#FF7F5C"
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#FF7F5C'
-                        }
-                    },
-                    data: Tiefenbrunnen
-                }
-            ]
+            return res;
         };
 
-        myChart.setOption(option);
-    });
-    if (option && typeof option === "object") {
-        myChart.setOption(option, true);
-    }
-</script>
+        document.getElementById("line1").addEventListener("click", function () {
+          
+            myChart.setOption({
+                backgroundColor: '#404a59',
+                title: {
+                },
+                toolbox: {
+                    show: true,
+                    left: 'left',
+                    top: 'top',
+                    feature: {
+                        dataView: { readOnly: false },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                geo: {
+                    name: 'USA PopEstimates',
+                    type: 'map',
+                    roam: true,
+                    map: 'USA',
+
+                    silent: true,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#FFFFFF',
+                            borderColor: '#ec0000',
+                            borderWidth: 1
+                        },
+                    }
+                },
+          /**      legend: {
+                    x: '50%',
+                    top: '90%',
+                    zlevel: 1,
+                    selectedMode: 'single',
+                    selected: {
+                        'Seebach': true,
+                        'ZurichHB ': false,
+                        'Tiefenbrunnen': false 
+
+                    },
+                    textStyle: {
+                        color: '#FF7F5C'
+                    },
+                    data: ['Seebach', 'ZurichHB', 'Tiefenbrunnen']
+                },
+         **/
+                series: [
+                    {
+                        name: 'Seebach',
+                        type: 'lines',
+                        smooth: false,
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[0].name,
+                                toName: geodata[1].name,
+                                coords: [geodata[0].value, geodata[1].value]
+                            }
+
+                        ],
+
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize: 10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f6bb06',
+                                width: 4,
+                                opacity: 0.8,
+                                type: 'dotted',
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                    {
+                        name: 'Seebach',
+                        type: 'lines',
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[1].name,
+                                toName: geodata[2].name,
+                                coords: [geodata[1].value, geodata[2].value]
+                            },
+                        ],
+
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f6bb06',
+                                width: 4,
+                                opacity: 0.8,
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                  { 
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        showEffectOn: 'render',
+                        zlevel: 3,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        rippleEffect: {
+                            brushType: 'stroke',
+                            period: 5,
+                            scale: 7
+                        },
+                      /**  label: {
+                            normal: {
+                                formatter: '{b}',
+                                position: 'left',
+                                offset: [-20, 10],
+                                show: true,
+                                textStyle: {
+                                    color: "#ec0000"
+                                }
+                            }
+                        },**/
+                        itemStyle: {
+                            normal: {
+                                color: '#ec0000'
+                            }
+                        },
+                        data: Seebach
+                    },
+                ]
+            })
+        }); 
+
+
+        document.getElementById("line2").addEventListener("click", function () {
+          
+          myChart.setOption({
+              backgroundColor: '#404a59',
+              title: {
+              },
+              toolbox: {
+                  show: true,
+                  left: 'left',
+                  top: 'top',
+                  feature: {
+                      dataView: { readOnly: false },
+                      restore: {},
+                      saveAsImage: {}
+                  }
+              },
+              geo: {
+                  name: 'USA PopEstimates',
+                  type: 'map',
+                  roam: true,
+                  map: 'USA',
+
+                  silent: true,
+                  itemStyle: {
+                      normal: {
+                          areaColor: '#FFFFFF',
+                          borderColor: '#ec0000',
+                          borderWidth: 1
+                      },
+                  }
+              },
+        /**      legend: {
+                  x: '50%',
+                  top: '90%',
+                  zlevel: 1,
+                  selectedMode: 'single',
+                  selected: {
+                      'Seebach': true,
+                      'ZurichHB ': false,
+                      'Tiefenbrunnen': false 
+
+                  },
+                  textStyle: {
+                      color: '#FF7F5C'
+                  },
+                  data: ['Seebach', 'ZurichHB', 'Tiefenbrunnen']
+              },
+       **/
+              series: [
+                  {
+                      name: 'ZürichHB',
+                      type: 'lines',
+                      smooth: false,
+                      coordinateSystem: 'geo',
+                      data: [
+                          {
+                              fromName: geodata[0].name,
+                              toName: geodata[3].name,
+                              coords: [geodata[0].value, geodata[3].value]
+                          }
+
+                      ],
+
+                      effect: {
+                          show: true,
+                          period: 6,
+                          trailLength: 0,
+                          symbolSize: 10
+                      },
+                      lineStyle: {
+                          normal: {
+                              color: '#ec0000',
+                              width: 4,
+                              opacity: 0.8,
+                              type: 'dotted',
+                              curveness: -0.2
+                          }
+                      }
+                  },
+                  {
+                      name: 'ZürichHB',
+                      type: 'lines',
+                      coordinateSystem: 'geo',
+                      data: [
+                          {
+                              fromName: geodata[3].name,
+                              toName: geodata[2].name,
+                              coords: [geodata[3].value, geodata[2].value]
+                          },
+                      ],
+                      effect: {
+                          show: true,
+                          period: 6,
+                          trailLength: 0,
+                      },
+                      lineStyle: {
+                          normal: {
+                              color: '#ec0000',
+                              width: 4,
+                              opacity: 0.8,
+                              curveness: 0.2
+                          }
+                      }
+                  },
+                { 
+                      type: 'effectScatter',
+                      coordinateSystem: 'geo',
+                      showEffectOn: 'render',
+                      zlevel: 3,
+                      symbol: 'circle',
+                      symbolSize: 5,
+                      rippleEffect: {
+                          brushType: 'stroke',
+                          period: 5,
+                          scale: 7
+                      },
+                    /**  label: {
+                          normal: {
+                              formatter: '{b}',
+                              position: 'left',
+                              offset: [-20, 10],
+                              show: true,
+                              textStyle: {
+                                  color: "#ec0000"
+                              }
+                          }
+                      },**/
+                      itemStyle: {
+                          normal: {
+                              color: '#ec0000'
+                          }
+                      },
+                      data: ZurichHB
+                  },
+              ]
+          })
+      }); 
+
+        document.getElementById("line3").addEventListener("click", function () {
+          
+          myChart.setOption({
+              backgroundColor: '#404a59',
+              title: {
+              },
+              toolbox: {
+                  show: true,
+                  left: 'left',
+                  top: 'top',
+                  feature: {
+                      dataView: { readOnly: false },
+                      restore: {},
+                      saveAsImage: {}
+                  }
+              },
+              geo: {
+                  name: 'USA PopEstimates',
+                  type: 'map',
+                  roam: true,
+                  map: 'USA',
+
+                  silent: true,
+                  itemStyle: {
+                      normal: {
+                          areaColor: '#FFFFFF',
+                          borderColor: '#ec0000',
+                          borderWidth: 1
+                      },
+                  }
+              },
+              series: [
+                  {
+                      name: 'Tiefenbrunnen',
+                      type: 'lines',
+                      smooth: false,
+                      coordinateSystem: 'geo',
+                      data: [
+                          {
+                              fromName: geodata[0].name,
+                              toName: geodata[4].name,
+                              coords: [geodata[0].value, geodata[4].value]
+                          }
+
+                      ],
+
+                      effect: {
+                          show: true,
+                          period: 6,
+                          trailLength: 0,
+                          symbolSize: 10
+                      },
+                      lineStyle: {
+                          normal: {
+                              color: '#f76902',
+                              width: 4,
+                              opacity: 0.8,
+                              type: 'dotted',
+                              curveness: -0.2
+                          }
+                      }
+                  },
+                  {
+                      name: 'Tiefenbrunnen',
+                      type: 'lines',
+                      coordinateSystem: 'geo',
+                      data: [
+                          {
+                              fromName: geodata[4].name,
+                              toName: geodata[2].name,
+                              coords: [geodata[4].value, geodata[2].value]
+                          },
+                      ],
+
+                      effect: {
+                          show: true,
+                          period: 6,
+                          trailLength: 0,
+                      },
+                      lineStyle: {
+                          normal: {
+                              color: '#f76902',
+                              width: 4,
+                              opacity: 0.8,
+                              curveness: 0.4
+                          }
+                      }
+                  },
+                { 
+                      type: 'effectScatter',
+                      coordinateSystem: 'geo',
+                      showEffectOn: 'render',
+                      zlevel: 3,
+                      symbol: 'circle',
+                      symbolSize: 5,
+                      rippleEffect: {
+                          brushType: 'stroke',
+                          period: 5,
+                          scale: 7
+                      },
+                      itemStyle: {
+                          normal: {
+                              color: '#f76902'
+                          }
+                      },
+                      data: Tiefenbrunnen
+                  },
+              ]
+          })
+      }); 
+
+
+        $.get('./Swiss.geo.json', function (usaJson) {
+            myChart.hideLoading();
+            echarts.registerMap('USA', usaJson);
+            option = {
+                backgroundColor: '#404a59',
+                title: {
+                },
+                toolbox: {
+                    show: true,
+
+                    left: 'left',
+                    top: 'top',
+                    feature: {
+                        dataView: { readOnly: false },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                geo: {
+                    name: 'USA PopEstimates',
+                    type: 'map',
+                    roam: true,
+                    map: 'USA',            
+                    silent: true,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#FFFFFF',
+                            borderColor: '#ec0000',
+                            borderWidth: 1
+                        },
+                    }
+                },
+                series: [
+                    {
+                        name: 'Seebach',
+                        type: 'lines',
+                        smooth: false,
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[0].name,
+                                toName: geodata[1].name,
+                                coords: [geodata[0].value, geodata[1].value]
+                            }
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize: 10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f6bb06',
+                                width: 4,
+                                opacity: 0.8,
+                                type: 'dotted',
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                    {
+                        name: 'Seebach',
+                        type: 'lines',
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[1].name,
+                                toName: geodata[2].name,
+                                coords: [geodata[1].value, geodata[2].value]
+                            },
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize:10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f6bb06',
+                                width: 4,
+                                opacity: 0.8,
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                   {
+                        name: 'ZurichHB',
+                        type: 'lines',
+                        smooth: false,
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[0].name,
+                                toName: geodata[3].name,
+                                coords: [geodata[0].value, geodata[3].value]
+                            }
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize:10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#ec0000',
+                                width: 4,
+                                opacity: 0.8,
+                                type: 'dotted',
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                    {
+                        name: 'ZurichHB',
+                        type: 'lines',
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[3].name,
+                                toName: geodata[2].name,
+                                coords: [geodata[3].value, geodata[2].value]
+                            },                  
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize:10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#ec0000',
+                                width: 4,
+                                opacity: 0.8,
+                                curveness: 0.2
+                            }
+                        }
+                    }, 
+                    {
+                        name: 'Tiefenbrunnen',
+                        type: 'lines',
+                        smooth: false,
+                        coordinateSystem: 'geo',
+                        data: [
+                            {
+                                fromName: geodata[0].name,
+                                toName: geodata[4].name,
+                                coords: [geodata[0].value, geodata[4].value]
+                            }
+
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize:10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f76902',
+                                width: 4,
+                                opacity: 0.8,
+                                type: 'dotted',
+                                curveness: -0.2
+                            }
+                        }
+                    },
+                    {
+                        name: 'Tiefenbrunnen',
+                        type: 'lines',
+                        coordinateSystem: 'geo',
+                        symbol: ['none', 'triangle'],
+                        zlevel: 2,
+                        data: [
+                            {
+                                fromName: geodata[4].name,
+                                toName: geodata[2].name,
+                                coords: [geodata[4].value, geodata[2].value]
+                            },
+                        ],
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbolSize:10
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#f76902',
+                                width: 4,
+                                opacity: 0.8,
+                                curveness: 0.4
+                            }
+                        }
+                    },
+                    {
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        showEffectOn: 'render',
+                        zlevel: 3,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        rippleEffect: {
+                            brushType: 'stroke',
+                            period: 5,
+                            scale: 7
+                        },
+                        label: {
+                            normal: {
+                                formatter: '{b}',
+                                position: 'left',
+                                offset: [-20, 10],
+                                show: true,
+                                textStyle: {
+                                    color: "#ec0000"
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#ec0000'
+                            }
+                        },
+                        data: ZurichHB
+                    },
+                    {
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        showEffectOn: 'render',
+                        zlevel: 3,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        rippleEffect: {
+                            brushType: 'stroke',
+                            period: 5,
+                            scale: 7
+                        },
+                        label: {
+                            normal: {
+                                formatter: '{b}',
+                                position: 'top',
+                                offset: [-15, -15],
+                                show: true,
+                                textStyle: {
+                                    color: "#f6bb06"
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#f6bb06'
+                            }
+                        },
+                        data: Seebach
+                    },
+                    {
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        showEffectOn: 'render',
+                        zlevel: 3,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        rippleEffect: {
+                            brushType: 'stroke',
+                            period: 5,
+                            scale: 7
+                        },
+                        label: {
+                            normal: {
+                                formatter: '{b}',
+                                position: 'right',
+                                offset: [15, 15],
+                                show: true,
+                                textStyle: {
+                                    color: "#FF7F5C"
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#FF7F5C'
+                            }
+                        },
+                        data: Tiefenbrunnen
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        });
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
 </body>
+
 </html>
